@@ -1,3 +1,4 @@
+
 export default function About() {
   return (
     <main
@@ -12,8 +13,9 @@ export default function About() {
 
         {/* Glass Card */}
         <div className="w-[80vw] h-[250px] max-w-4xl rounded-3xl mt-10  bg-white/8 backdrop-blur-xl shadow-xl border border-white/30 p-10">
+          
           <h1 className="text-5xl font-semibold text-black/80 mb-6 text-center">
-            About Me
+            About Me!
           </h1>
 
           <p className="text-black/70 text-m leading-relaxed text-center">
