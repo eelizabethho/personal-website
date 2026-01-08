@@ -1,4 +1,27 @@
+"use client";
+
+import { motion } from 'motion/react';
+import { useEffect, useRef, useState } from 'react';
+
 const Skills = () => {
+  const [inView, setInView] = useState(false);
+  const ref = useRef(null);
+
+  useEffect(() => {
+    if (!ref.current) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setInView(true);
+          observer.unobserve(ref.current);
+        }
+      },
+      { threshold: 0.1, rootMargin: '0px' }
+    );
+    observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, []);
+
   const skills = [
     'Java',
     'JavaScript',
@@ -28,20 +51,36 @@ const Skills = () => {
   ];
 
   return (
-    <div className="pt-16 pb-32 md:pt-12 md:pb-24 px-4 md:px-8  flex flex-col items-center md:items-center md:justify-start relative z-10 bg-black">
-      <h2 className="text-4xl md:text-6xl font-semibold text-white mb-6 text-center">
+    <div 
+      ref={ref}
+      className="py-16 px-4 md:px-8 flex flex-col items-center relative z-10 bg-black"
+    >
+      <motion.h2 
+        className="text-5xl font-semibold text-white mb-10 text-center"
+        initial={{ opacity: 0, y: -30 }}
+        animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: -30 }}
+        transition={{ duration: 0.6 }}
+      >
         Skills
-      </h2>
-      <div className="flex flex-wrap justify-center gap-3 md:gap-4 max-w-5xl mx-auto font-light ">
-        {skills.map((skill) => (
-          <div
+      </motion.h2>
+      <div className="flex flex-wrap justify-center gap-3 max-w-5xl mx-auto">
+        {skills.map((skill, index) => (
+          <motion.div
             key={skill}
-            className="px-4 py-2 md:px-6 md:py-3 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/30 hover:scale-105 hover:shadow-[0_0_20px_rgba(255,255,255,0.2)] transition-all duration-300 backdrop-blur-sm cursor-default"
+            className="px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/20 hover:border-white/40 hover:shadow-[0_0_15px_rgba(255,255,255,0.1)] transition-all duration-300 cursor-default"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={inView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
+            transition={{ 
+              duration: 0.4, 
+              delay: index * 0.03,
+              ease: "easeOut"
+            }}
+            whileHover={{ scale: 1.05 }}
           >
-            <span className="text-white text-sm md:text-base font-light">
+            <span className="text-white text-sm font-medium">
               {skill}
             </span>
-          </div>
+          </motion.div>
         ))}
       </div>
     </div>
