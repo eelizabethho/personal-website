@@ -76,7 +76,7 @@ export default function FeaturedProject() {
                 animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
                 transition={{ duration: 0.5, delay: 0.4 }}
               >
-                AI interview coach with transcription and structured feedback.
+                AI interview coach with transcription and structured feedback to help you improve with clarity.
               </motion.p>
               <motion.div
                 className="flex gap-2 justify-center md:justify-start"
