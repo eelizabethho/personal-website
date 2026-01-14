@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from 'motion/react';
+import { Linkedin, FileText } from 'lucide-react';
 import BlurText from "@/components/BlurText";
 import ProfileCard from "@/components/ProfileCard";
 
@@ -17,11 +18,13 @@ export default function Home() {
 
       {/* Content */}
       <div className="relative z-10 flex min-h-screen flex-col items-center justify-center px-6 text-center text-white">
-        <BlurText
-          text="Hi, Im Elizabeth. Welcome!"
-          delay={120} animateBy="words" direction="top" onAnimationComplete={handleAnimationComplete}
-          className="text-4xl sm:text-5xl md:text-6xl font-semibold mb-4"
-        />
+        <div className="mb-4">
+          <BlurText
+            text="Welcome! I'm Elizabeth"
+            delay={120} animateBy="words" direction="top" onAnimationComplete={handleAnimationComplete}
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold"
+          />
+        </div>
 
         <motion.p 
           className="text-white/90 text-lg max-w-xl mb-8"
@@ -29,35 +32,37 @@ export default function Home() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.2 }}
         >
-          Discover my projects, learn about my journey, and get in touch :)
+          Here you'll find my projects, my journey, and ways to connect :)
         </motion.p>
 
         {/* Links */}
         <motion.div 
-          className="flex gap-4 items-center"
+          className="flex gap-3 items-center"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.4 }}
         >
           <motion.a
-            href="https://www.linkedin.com/in/elizabeth-ho"
+            href="https://www.linkedin.com/in/eelizabethho/"
             target="_blank"
             rel="noopener noreferrer"
-            className="px-6 py-3 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/20 hover:border-white/40 transition-all text-white font-medium"
+            className="flex items-center gap-2 px-5 py-3 rounded-full bg-gray-200 border border-gray-300 text-black/80 font-semibold transition-all duration-300 hover:bg-blue-600 hover:text-white hover:scale-105 hover:shadow-md"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            LinkedIn
+            <Linkedin size={20} />
+            <span>LinkedIn</span>
           </motion.a>
           <motion.a
-            href="/resume.pdf"
+            href="/ELIZABETH HO.pdf"
             target="_blank"
             rel="noopener noreferrer"
-            className="px-6 py-3 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/20 hover:border-white/40 transition-all text-white font-medium"
+            className="flex items-center gap-2 px-5 py-3 rounded-full bg-gray-200 border border-gray-300 text-black/80 font-semibold transition-all duration-300 hover:bg-red-600 hover:text-white hover:scale-105 hover:shadow-md"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            Resume
+            <FileText size={20} />
+            <span>Resume</span>
           </motion.a>
         </motion.div>
         

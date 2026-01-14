@@ -3,6 +3,54 @@
 import { motion } from 'motion/react';
 import { useEffect, useRef, useState } from 'react';
 
+// Icon components
+const CloudIcon = () => (
+  <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+    <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/>
+  </svg>
+);
+
+const SchoolIcon = () => (
+  <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+    <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+    <path d="M6 12v5c0 1.1.9 2 2 2h1v-7"/>
+    <path d="M18 12v5c0 1.1-.9 2-2 2h-1v-7"/>
+  </svg>
+);
+
+const GlobeIcon = () => (
+  <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+    <circle cx="12" cy="12" r="10"/>
+    <line x1="2" y1="12" x2="22" y2="12"/>
+    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+  </svg>
+);
+
+const GraduationCapIcon = () => (
+  <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+    <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+    <path d="M6 12v5c0 1.1.9 2 2 2h1v-7"/>
+    <path d="M18 12v5c0 1.1-.9 2-2 2h-1v-7"/>
+    <path d="M12 11v8"/>
+  </svg>
+);
+
+const BriefcaseIcon = () => (
+  <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+    <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/>
+    <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
+  </svg>
+);
+
+const UsersIcon = () => (
+  <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+    <circle cx="9" cy="7" r="4"/>
+    <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+    <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+  </svg>
+);
+
 export default function Timeline() {
   const timelineItems = [
     {
@@ -10,6 +58,7 @@ export default function Timeline() {
       title: "AWS Certifications",
       company: "In Progress",
       description: "Currently working towards AWS AI and AWS Cloud certifications to expand cloud computing and AI expertise. These certifications will complement hands-on experience with AWS services from internship.",
+      icon: <CloudIcon />,
       highlight: true
     },
     {
@@ -17,13 +66,15 @@ export default function Timeline() {
       title: "Undergraduate Researcher",
       company: "Virginia Tech",
       description: "Working with Professor Hamouda to create AI-focused learning materials for students ages 10–18. Designs interactive lessons and builds AI-powered tools that make complex concepts accessible. All content aligns with Virginia Department of Education CS Standards to help students learn AI from the ground up.",
+      icon: <SchoolIcon />,
       highlight: true
     },
     {
       year: "Jan 2026 - Present",
-      title: "Teaching Assistant",
+      title: "Undergraduate Teaching Assistant",
       company: "CS 1114 - Virginia Tech",
       description: "Supporting students learning object-oriented programming in Java. Holds regular office hours and lab sessions to help with assignments. Focuses on breaking down abstract CS concepts into clear, beginner-friendly explanations that help students succeed.",
+      icon: <GraduationCapIcon />,
       highlight: true
     },
     {
@@ -32,13 +83,15 @@ export default function Timeline() {
       company: "Amazon Web Services",
       description: "Delivered significant impact during internship. Automated a 24-hour manual process down to just 2 minutes using parallel processing, saving approximately one developer-month per region launch. Fixed a critical 5-year-old database bug with a permanent solution. Presented work to 30+ engineers and the org-wide AWS Cryptography teams.",
       tech: "AWS Lambda, S3, DynamoDB, Step Functions, CloudWatch",
+      icon: <CloudIcon />,
       highlight: true
     },
     {
-      year: "Aug 2024 - May 2027",
+      year: "Aug 2024 - May 2028",
       title: "BS in Computer Science",
       company: "Virginia Tech",
       description: "Pursuing degree while maintaining a 3.85/4.0 GPA. Balances coursework with research, teaching, and internships. Through teaching and research, actively contributes to the CS community and helps other students succeed.",
+      icon: <SchoolIcon />,
       highlight: true
     },
     {
@@ -46,13 +99,15 @@ export default function Timeline() {
       title: "Web Developer",
       company: "SASE (Society of Asian Scientists & Engineers)",
       description: "Developed and maintained the official SASE website. Improved the site's responsiveness across devices and enhanced code maintainability. This work helps the organization better serve its members and community.",
-      tech: "React, HTML, CSS, JavaScript"
+      tech: "React, HTML, CSS, JavaScript",
+      icon: <GlobeIcon />
     },
     {
       year: "Jun 2020 - Aug 2024",
       title: "Computer Science Tutor",
       company: "Unity Learning",
       description: "Tutored students in math and computer science for over 4 years. Specializes in breaking down complex topics into simple, beginner-friendly explanations. Goal is helping students build strong foundations in programming that will serve them throughout their careers.",
+      icon: <UsersIcon />
     }
   ];
 
@@ -164,11 +219,20 @@ function TimelineItem({ item, index }) {
             ? 'bg-white/95 border-black/20 shadow-2xl' 
             : 'bg-white/8 border-white/30'
         }`}>
-          {/* Year */}
-          <div className={`text-xs font-medium mb-2 tracking-wide ${
-            item.highlight ? 'text-black/60' : 'text-black/50'
-          }`}>
-            {item.year}
+          {/* Icon and Year Row */}
+          <div className="flex items-center gap-3 mb-3">
+            {item.icon && (
+              <div className={`flex items-center justify-center w-8 h-8 md:w-10 md:h-10 rounded-lg ${
+                item.highlight ? 'bg-black/10 text-black/80' : 'bg-white/20 text-black/60'
+              }`}>
+                {item.icon}
+              </div>
+            )}
+            <div className={`text-xs font-medium tracking-wide ${
+              item.highlight ? 'text-black/60' : 'text-black/50'
+            }`}>
+              {item.year}
+            </div>
           </div>
           
           {/* Title */}
